@@ -1,0 +1,46 @@
+<p id="notice">
+	<%= notice %>
+</p>
+
+<p>
+	<strong>Name:</strong>
+	<%= @project.name %>
+</p>
+
+<p>
+	<strong>Url:</strong>
+	<%= @project.url %>
+</p>
+
+<h2>Students</h2>
+<% @project.students.each do |student| %>
+<p>
+	<b>Studentid:</b>
+	<%= student.studentid %>
+</p>
+<p>
+	<b>Name:</b>
+	<%= student.name %>
+</p>
+<% end %>
+<br/>
+<h2>Add a student:</h2>
+<%= form_for([@project, @project.students.build]) do |f| %>
+<div class="field">
+	<%= f.label :studentid %>
+	<br />
+	<%= f.number_field :studentid %>
+</div>
+<div class="field">
+	<%= f.label :name %>
+	<br />
+	<%= f.text_field :name %>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>
+<% end %>
+<br />
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
